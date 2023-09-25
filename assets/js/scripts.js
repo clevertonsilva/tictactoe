@@ -1,11 +1,14 @@
+"use strict";
+
 let cells = [];
 let CLOSECLASSNAME = 'close';
 let CIRCLECLASSNAME = 'circle';
+let btnReset = document.querySelector(".btnReset");
 
 function loadTable() {
-
-  const tbElement = document.createElement("table");
-  const tbBodyElement = document.createElement("tbody");
+ 
+  const tbElement = document.createElement('table');
+  const tbBodyElement = document.createElement('tbody');
   const appBody = document.querySelector('.app-body');
 
   for (let tr = 0; tr < 3; tr++) {
@@ -29,7 +32,20 @@ function loadTable() {
 
 }
 
+function resetTable(){
+
+  cells = [];
+  
+  document.querySelectorAll('.app-body td')
+      .forEach(e => e.classList.remove(CLOSECLASSNAME));
+
+  document.querySelectorAll('.app-body td')
+    .forEach(e => e.classList.remove(CIRCLECLASSNAME));
+
+}
+
 loadTable();
+btnReset.onclick = resetTable;
 
 document.querySelectorAll('.app-body td')
   .forEach(e => e.addEventListener("click", function (e) {
@@ -56,16 +72,5 @@ document.querySelectorAll('.app-body td')
       cells.push(cellLastValue);
     }
   }));
-
-document.querySelector('.btnReset').addEventListener('click', function () {
- 
-  cells = [];
-  
-  document.querySelectorAll('.app-body td')
-      .forEach(e => e.classList.remove(CLOSECLASSNAME));
-
-  document.querySelectorAll('.app-body td')
-    .forEach(e => e.classList.remove(CIRCLECLASSNAME));
-})
 
 
