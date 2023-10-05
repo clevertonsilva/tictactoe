@@ -16,6 +16,7 @@ const WINNING_COMBINATIONS = [
 ];
 
 let btnReset = document.querySelector(".btnReset");
+let textWinner = document.querySelector('.winner');
 
 function loadTable() {
 
@@ -68,20 +69,12 @@ function checkWin(currentClass) {
   }
 }
 
-function resetTable() {
-
-  cells = [];
-
-  document.querySelectorAll('.app-body td')
-    .forEach(e => e.classList.remove(PLAYER_X_CLASS)
-      || e.classList.remove(PLAYER_O_CLASS));
-}
-
 loadTable();
 btnReset.onclick = resetTable;
 
-document.querySelectorAll('.app-body td')
-  .forEach(e => e.addEventListener("click", function (e) {
+var tableCells = document.querySelectorAll('.app-body td');
+
+  tableCells.forEach(e => e.addEventListener("click", function (e) {
 
     const cellNewValue = cells.length > 0 && cells[cells.length - 1].cellValue == PLAYER_X_CLASS
         ? PLAYER_O_CLASS
@@ -98,9 +91,17 @@ document.querySelectorAll('.app-body td')
      cells.push({ cellValue: cellNewValue,  pos:this.getAttribute("data-cell") });
 
     if (checkWin(cellNewValue)){
-      document.querySelector('.winner').innerHTML = cellNewValue;
+      textWinner.innerHTML = `Vencedor: ${cellNewValue}`;
     }
 
   }));
 
-  var tableCells = document.querySelectorAll('.app-body td');
+  function resetTable() {
+
+    cells = [];
+  
+    tableCells.forEach(e => e.classList.remove(PLAYER_X_CLASS)
+        || e.classList.remove(PLAYER_O_CLASS));
+
+    textWinner.innerHTML = '';
+  }

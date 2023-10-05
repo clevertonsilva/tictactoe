@@ -7,8 +7,10 @@
 }
 
 #app .app-header{
-    justify-content: center;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
     padding: 20px 0;
 }
 
@@ -53,4 +55,9 @@ tr + tr > th { border-top: 5px solid #000; }
 .o{
     background: url('../imgs/circle.svg') no-repeat center;
     background-size: 120px 120px;
+}
+
+h1.winner{
+    font-size: 24px;
+    padding: 5px 0;
 }
